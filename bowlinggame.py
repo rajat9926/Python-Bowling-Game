@@ -24,7 +24,7 @@ class Bowlinggame():
 				print(f"1st Throw-{ftr}|",f"2nd Throw-{st}", f"-->total {total}")
 				self.checkscore()
 			if len(self.score) >= 1:
-					if self.score == 0:
+					if total == 0:
 						self.score.append(0)
 					else:	
 						self.score.append(sum(self.score)+total)
