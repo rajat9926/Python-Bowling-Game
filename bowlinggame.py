@@ -15,16 +15,20 @@ class Bowlinggame():
 		permission = input(f"throw ball (Rolls Left {self.rolls}) (y/n) : ")
 		if permission == "y":
 			self.rolls-=1
-			ft = random.randint(0,10)
+			ftr = random.randint(0,10)
+			ft = 10-ftr
 			st = random.randint(0,ft)
-			total = ft+st
+			total = ftr+st
 			if len(self.score) == 0:
 				self.score.append(total)
+				print(f"1st Throw-{ftr}|",f"2nd Throw-{st}", f"-->total {total}")
 				self.checkscore()
 			if len(self.score) >= 1:
-				for i in range(0,1):
-					self.score.append(sum(self.score)+total)
-			print(f"1st Throw-{ft}|",f"2nd Throw-{st}", f"-->total {total}")
+					if self.score == 0:
+						self.score.append(0)
+					else:	
+						self.score.append(sum(self.score)+total)
+			print(f"1st Throw-{ftr}|",f"2nd Throw-{st}", f"-->total {total}")
 			self.checkscore()
 		if permission == "n":
 			print("Thank You Have A Good Day...Bye Bye")
