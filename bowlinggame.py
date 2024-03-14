@@ -6,6 +6,7 @@ class Bowlinggame():
 		self.score = []
 		self.finalscore = 0
 		self.rolls = 10
+		self.a = 0
 
 	def playername(self):
 		self.player1 = input("Enter Your Name : ").capitalize()
@@ -26,8 +27,9 @@ class Bowlinggame():
 			if len(self.score) >= 1:
 					if total == 0:
 						self.score.append(0)
-					else:	
-						self.score.append(sum(self.score)+total)
+					else:
+							self.score.append(self.score[self.a]+total)
+							self.a+=1
 			print(f"1st Throw-{ftr}|",f"2nd Throw-{st}", f"-->total {total}")
 			self.checkscore()
 		if permission == "n":
