@@ -9,11 +9,11 @@ class Bowlinggame():
 		self.a = 0
 
 	def playername(self):
-		self.player1 = input("Enter Your Name : ").capitalize()
-		print(f"Welcome in Game {self.player1}")
+		self.player1 = input("***Enter Your Name*** : ").capitalize()
+		print(f" :-) Welcome In Game {self.player1}")
 
 	def throwball(self):
-		permission = input(f"throw ball (Rolls Left {self.rolls}) (y/n) : ")
+		permission = input(f"----Throw Ball---- (Rolls Left => {self.rolls}) (y/n) : ")
 		if permission == "y":
 			self.rolls-=1
 			ftr = random.randint(0,10)
@@ -30,21 +30,21 @@ class Bowlinggame():
 					else:
 							self.score.append(self.score[self.a]+total)
 							self.a+=1
-			print(f"1st Throw-{ftr}|",f"2nd Throw-{st}", f"-->total {total}")
+			print(f"1st Throw - {ftr}|",f"2nd Throw - {st}", f"--> Total {total}")
 			self.checkscore()
 		if permission == "n":
-			print("Thank You Have A Good Day...Bye Bye")
+			print(" ** Thank You Have A Good Day...Bye Bye ** ")
 			exit()
 		else:
-			print("Invalid Input Try Again")
+			print("Invalid Input Try Again :-(")
 			self.throwball()
 
 	def checkscore(self):
 		if len(self.score) == 10:
 			self.finalscore = sum(self.score)
 			print(self.score)
-			print(f"Your Final Score Is {self.finalscore}")
-			print("**Thanks For Playing**")
+			print(f" Your Final Score Is =>  {self.finalscore} ")
+			print(" ** Thanks For Playing ** ")
 			exit()
 		else:
 			print(self.score)
