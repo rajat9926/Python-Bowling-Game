@@ -5,21 +5,25 @@ class Bowlinggame():
 		self.player1 = ""
 		self.score = []
 		self.finalscore = 0
-		self.rolls = 10
+		self.frames = 10
 		self.a = 0
+		self.round=1
 
 	def playername(self):
 		self.player1 = input("***Enter Your Name*** : ").capitalize()
 		print(f" :-) Welcome In Game {self.player1}")
 
 	def throwball(self):
-		permission = input(f"----Throw Ball---- (Rolls Left => {self.rolls}) (y/n) : ")
+		permission = input(f"---- Round {self.round} ---- (Frames Left => {self.frames}) (y/n) : ")
 		if permission == "y":
-			self.rolls-=1
-			ftr = random.randint(0,10)
+			self.frames-=1
+			t1p = input("Throw 1st Ball (y/n) : ")
+			t2p = input("Throw 2st Ball (y/n) : ")
+			ftr = random.randint(0,10) if t1p == "y" else exit()
 			ft = 10-ftr
-			st = random.randint(0,ft)
+			st = random.randint(0,ft) if t1p == "y" else exit()
 			total = ftr+st
+			self.round+=1
 			if len(self.score) == 0:
 				self.score.append(total)
 				print(f"1st Throw-{ftr}|",f"2nd Throw-{st}", f"-->total {total}")
@@ -47,7 +51,7 @@ class Bowlinggame():
 			print(" ** Thanks For Playing ** ")
 			exit()
 		else:
-			print(self.score)
+			print(f"ScOrE BoArD -> {self.score}")
 			self.throwball()
 
 
