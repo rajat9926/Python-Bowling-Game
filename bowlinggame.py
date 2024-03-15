@@ -20,11 +20,11 @@ class Bowlinggame():
 		permission = input(f"---- Round {self.round} ---- (Frames Left => {self.frames}) (y/n) : ")
 		if permission == "y":
 			self.frames-=1
-			# t1p = input("Throw 1st Ball (y/n) : ")
-			# t2p = input("Throw 2st Ball (y/n) : ")
-			ftr = random.randint(0,10) #if t1p == "y" else exit()
+			t1p = input("Throw 1st Ball (y/n) : ")
+			t2p = input("Throw 2st Ball (y/n) : ")
+			ftr = random.randint(0,10) if t1p == "y" else exit()
 			ft = 10-ftr
-			st = random.randint(0,ft) #if t2p == "y" else exit()
+			st = random.randint(0,ft) if t2p == "y" else exit()
 			self.total = ftr+st
 			self.round+=1
 
@@ -37,6 +37,7 @@ class Bowlinggame():
 
 			if ftr == 10 or st == 10 or self.total == 10:
 				self.allpinsdown = 10
+				self.all_pin_down()
 
 			if len(self.score) == 0:
 				self.score.append(self.total)
@@ -46,15 +47,8 @@ class Bowlinggame():
 					if self.total == 0:
 						self.score.append(0)
 					else:
-							# if self.allpinsdown == 10:
-							# 	print("  * * Congratulations Its A All Pin Down * *  ")
-							# 	tb = input("Throw 1st Ball (y/n) : ")
-							# 	ftrs = random.randint(0,10) if tb == "y" else exit()
-							# 	self.score.append(self.score[self.a]+10+ftrs)
-							# 	self.allpinsdown = 0
-							# else:
-								self.score.append(self.score[self.a]+self.total)
-								self.a+=1
+						self.score.append(self.score[self.a]+self.total)
+						self.a+=1
 			print(f"1st Throw - {ftr}|",f"2nd Throw - {st}", f"--> Total {self.total}")
 			self.checkscore()
 		if permission == "n":
@@ -75,6 +69,14 @@ class Bowlinggame():
 			print(f"ScOrE BoArD -> {self.score}")
 			self.throwball()
 
+	def all_pin_down (self):
+			print("  * * Congratulations Its A All Pin Down * *  ")
+			tb = input("Throw 1st Ball (y/n) : ")
+			fbr = random.randint(0,10) if tb == "y" else self.all_pin_down()
+			print(f"Your First Ball Score Is --> {fbr} So WE Will Add {fbr} + 10 In Your Previous Score ")
+			self.score.append(self.score[self.a]+fbr+self.allpinsdown)
+			self.a+=1
+			self.checkscore()
 
 a = Bowlinggame()
 a.playername()
