@@ -72,10 +72,18 @@ class Bowlinggame():
 	def all_pin_down (self):
 			print("  * * Congratulations Its A All Pin Down * *  ")
 			tb = input("Throw 1st Ball (y/n) : ")
+			sb = input("Throw 2st Ball (y/n) : ")
 			fbr = random.randint(0,10) if tb == "y" else self.all_pin_down()
+			fb = 10-fbr
+			sbr = random.randint(0,fb) if sb == "y" else self.all_pin_down()
 			print(f"Your First Ball Score Is --> {fbr} So WE Will Add {fbr} + 10 In Your Previous Score ")
+			print(f"Your Second Ball Score Is --> {sbr} ")
 			self.score.append(self.score[self.a]+fbr+self.allpinsdown)
 			self.a+=1
+			self.score.append(self.score[self.a]+fbr+sbr)
+			self.a+=1
+			self.frames-=1
+			self.round+=1
 			self.checkscore()
 
 a = Bowlinggame()
