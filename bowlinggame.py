@@ -11,6 +11,7 @@ class Bowlinggame():
 		self.trdball= 0
 		self.total = 0 + self.trdball
 		self.allpinsdown = 0
+		self.strike3 = False
 
 	def playername(self):
 		self.player1 = input("***Enter Your Name*** : ").capitalize()
@@ -22,6 +23,14 @@ class Bowlinggame():
 			try:
 				t1p = int(input("Throw 1st Ball (0 to 10) : "))
 				if t1p <= 10:
+					if self.strike3 == True:
+						self.score.append(self.score[self.a] + 10 + t1p)
+						self.a+=1
+						self.strike3 = False
+						self.round+=1
+						self.frames-=1
+						print(f" your previous score + 10 + {t1p}")
+						self.checkscore()
 					ftr = t1p
 					ft = 10-ftr
 					t2p = int(input(f"Throw 2st Ball (0 to {ft}) : ")) if ft != 0 else 0
@@ -111,6 +120,7 @@ class Bowlinggame():
 					self.score.append(self.score[self.a] + 10 + 10 )
 					print("10 + 10 + previous score")
 					self.a+=1
+					self.strike3 = True
 					self.checkscore()
 				print(f"Your First Ball Score Is --> {fbr} So WE Will Add {fbr} + 10 In Your Previous Score ")
 				print(f"Your Second Ball Score Is --> {sbr} ")
